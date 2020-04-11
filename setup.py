@@ -28,7 +28,7 @@ distfiles = """
     tests/*.py
 """
 
-if 'dist' in sys.argv:
+if 'sdist' in sys.argv:
     distdir = "piksemel-%s" % version
     filelist = []
     for t in distfiles.split():
