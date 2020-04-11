@@ -62,13 +62,6 @@ elif 'test' in sys.argv:
 
 
 class Install(install):
-    def finalize_options(self):
-        # NOTE: for Pardus distribution
-        if os.path.exists("/etc/pardus-release"):
-            self.install_platlib = '$base/lib/pardus'
-            self.install_purelib = '$base/lib/pardus'
-        install.finalize_options(self)
-
     def run(self):
         install.run(self)
 
