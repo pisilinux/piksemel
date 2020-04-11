@@ -44,7 +44,7 @@ if 'sdist' in sys.argv:
             if not os.path.exists(dn):
                 os.mkdir(dn)
         shutil.copy(file_, os.path.join(distdir, file_))
-    os.popen("tar -czf %s %s" % ("piksemel-" + version + ".tar.gz", distdir))
+    subprocess.run(["tar", "czf", "piksemel-" + version + ".tar.gz", distdir])
     shutil.rmtree(distdir)
     sys.exit(0)
 
