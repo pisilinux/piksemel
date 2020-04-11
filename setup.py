@@ -30,13 +30,13 @@ distfiles = """
 
 if 'dist' in sys.argv:
     distdir = "piksemel-%s" % version
-    list = []
+    filelist = []
     for t in distfiles.split():
-        list.extend(glob.glob(t))
+        filelist.extend(glob.glob(t))
     if os.path.exists(distdir):
         shutil.rmtree(distdir)
     os.mkdir(distdir)
-    for file_ in list:
+    for file_ in filelist:
         cum = distdir[:]
         for d in os.path.dirname(file_).split('/'):
             dn = os.path.join(cum, d)
