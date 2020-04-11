@@ -20,7 +20,7 @@ from distutils.command.install import install
 version = '2.0a1'
 
 distfiles = """
-    README
+    README.md
     setup.py
     src/iksemel.c
     src/iksemel.h
