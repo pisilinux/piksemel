@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2006, TUBITAK/UEKAE
+# Copyright (C) 2006 TUBITAK/UEKAE, 2019 Safa Arıman, 2020 Erdem Ersoy
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
@@ -20,7 +20,7 @@ from distutils.command.install import install
 version = '2.0a1'
 
 distfiles = """
-    README
+    README.md
     setup.py
     src/iksemel.c
     src/iksemel.h
@@ -28,15 +28,15 @@ distfiles = """
     tests/*.py
 """
 
-if 'dist' in sys.argv:
+if 'sdist' in sys.argv:
     distdir = "piksemel-%s" % version
-    list = []
+    filelist = []
     for t in distfiles.split():
-        list.extend(glob.glob(t))
+        filelist.extend(glob.glob(t))
     if os.path.exists(distdir):
         shutil.rmtree(distdir)
     os.mkdir(distdir)
-    for file_ in list:
+    for file_ in filelist:
         cum = distdir[:]
         for d in os.path.dirname(file_).split('/'):
             dn = os.path.join(cum, d)
@@ -44,7 +44,7 @@ if 'dist' in sys.argv:
             if not os.path.exists(dn):
                 os.mkdir(dn)
         shutil.copy(file_, os.path.join(distdir, file_))
-    os.popen("tar -czf %s %s" % ("piksemel-" + version + ".tar.gz", distdir))
+    subprocess.run(["tar", "czf", "piksemel-" + version + ".tar.gz", distdir])
     shutil.rmtree(distdir)
     sys.exit(0)
 
@@ -62,13 +62,6 @@ elif 'test' in sys.argv:
 
 
 class Install(install):
-    def finalize_options(self):
-        # NOTE: for Pardus distribution
-        if os.path.exists("/etc/pardus-release"):
-            self.install_platlib = '$base/lib/pardus'
-            self.install_purelib = '$base/lib/pardus'
-        install.finalize_options(self)
-
     def run(self):
         install.run(self)
 
