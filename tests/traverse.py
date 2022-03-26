@@ -26,7 +26,7 @@ count = 0
 while node:
     last = node
     count += 1
-    node = next(node)
+    node = node.next()
 assert(count == 13)
 
 node = last
