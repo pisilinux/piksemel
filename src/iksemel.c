@@ -132,10 +132,11 @@ char *
 iks_escape (ikstack *s, char *src, size_t len)
 {
 	char *ret;
-	int i, j, nlen;
+	int j;
+    size_t i, nlen;
 
 	if (!src || !s) return NULL;
-	if (len == -1) len = strlen (src);
+	if (len == (size_t)-1) len = strlen (src);
 
 	nlen = len;
 	for (i=0; i<len; i++) {
@@ -170,12 +171,13 @@ iks_escape (ikstack *s, char *src, size_t len)
 char *
 iks_unescape (ikstack *s, char *src, size_t len)
 {
-	int i,j;
+	size_t i;
+	int j;
 	char *ret;
 
 	if (!s || !src) return NULL;
 	if (!strchr (src, '&')) return src;
-	if (len == -1) len = strlen (src);
+	if (len == (size_t)-1) len = strlen (src);
 
 	ret = iks_stack_alloc (s, len + 1);
 	if (!ret) return NULL;
@@ -568,7 +570,7 @@ stack_expand (iksparser *prs, int len)
 	prs->stack_max = need;
 	prs->tag_name += diff;
 	if (prs->attflag != 0) {
-		int i = 0;
+		unsigned int i = 0;
 		while (i < (prs->attmax * 2)) {
 			if (prs->atts[i]) prs->atts[i] += diff;
 			i++;
@@ -1581,9 +1583,8 @@ iks_has_attribs (iks *x)
 static size_t
 escape_size (char *src, size_t len)
 {
-	size_t sz;
+	size_t i, sz;
 	char c;
-	int i;
 
 	sz = 0;
 	for (i = 0; i < len; i++) {
@@ -1612,7 +1613,7 @@ static char *
 escape (char *dest, char *src, size_t len)
 {
 	char c;
-	int i;
+	size_t i;
 	int j = 0;
 
 	for (i = 0; i < len; i++) {
