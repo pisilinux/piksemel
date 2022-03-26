@@ -1,7 +1,7 @@
 # Piksemel 2.0 (eersoy93's fork)
 
 Python XML API based on the iksemel library.
-Copyright (C) 2005-2006 TUBITAK/UEKAE, 2019 Safa Arıman, 2020 Erdem Ersoy
+Copyright (C) 2005-2006 TUBITAK/UEKAE, 2019 Safa Arıman, 2020 Erdem Ersoy, 2022 Ersoy Kardesler
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
