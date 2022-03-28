@@ -709,7 +709,7 @@ static void
 prettify(struct makeup_ctx *ctx, iks *parent, iks *node)
 {
 	iks *x, *y, *a;
-	int i;
+	unsigned int i;
 
 	for (x = iks_child(node); x; x = iks_next(x)) {
 		if (iks_type(x) == IKS_TAG) {
